@@ -1,0 +1,136 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1040">
+    <Grid MouseEnter="Grid_MouseEnter">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Background="CadetBlue">
+            
+            <MenuItem Header="File" FontSize="20" Margin="2">
+                <MenuItem Background="CadetBlue"  Header="New"></MenuItem>
+                <MenuItem Background="CadetBlue"  Header="Open"></MenuItem>
+                <MenuItem Background="CadetBlue"  Header="Save"></MenuItem>
+                <MenuItem Background="CadetBlue"  Header="Exit"></MenuItem>
+            </MenuItem>
+            
+            
+            <MenuItem Header="Edit" FontSize="20" Margin="2">
+                <MenuItem Background="CadetBlue" x:Name="cutMenuButton" Click="cutMenuButton_Click" Header="Cut"></MenuItem>
+                <MenuItem Background="CadetBlue" x:Name="copyMenuButton" Click="copyMenuButton_Click" Header="Copy"></MenuItem>
+                <MenuItem Background="CadetBlue" x:Name="pasteMenuButton" Click="pasteMenuButton_Click" Header="Paste"></MenuItem>
+            </MenuItem>
+            
+            <MenuItem Header="Format" FontSize="20" Margin="2">
+                
+                <MenuItem Header="Alignment"  Background="CadetBlue">
+                    <MenuItem Background="CadetBlue" x:Name="alignleftMenuButton" Click="alignLeftMenuButton_Click" Header="Left"></MenuItem>
+                    <MenuItem Background="CadetBlue" x:Name="alignrightMenuButton" Click="alignRightMenuButton_Click" Header="Right"></MenuItem>
+                    <MenuItem Background="CadetBlue" x:Name="aligncenterMenuButton" Click="alignCenterMenuButton_Click" Header="Center"></MenuItem>
+                    <MenuItem Background="CadetBlue" x:Name="justifyMenuButton" Click="justifyMenuButton_Click" Header="Justify"></MenuItem>
+                </MenuItem >
+
+                
+                <MenuItem Header="Font Styles"  Background="CadetBlue">
+                    <ListBox x:Name="fontStyleListMenuButton"  Background="CadetBlue">
+                        <ListBoxItem></ListBoxItem>
+                    </ListBox>
+                </MenuItem>
+                
+            </MenuItem>
+        </Menu>
+
+        
+        <ToolBarTray  Grid.Row="1" Background="MintCream" HorizontalAlignment="Stretch">
+
+            <ToolBar Background="MintCream">
+
+                <Button x:Name="newFileButton" Click="newFileButton_Click">
+                    <Image Source="/Icons/file.png" Width="30" Height="30" Margin="5"/>
+                </Button>
+                
+                <Button x:Name="newFolderButton" Click="newFolderButton_Click">
+                    <Image Source="/Icons/folder.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+            </ToolBar>
+
+            <ToolBar  Background="MintCream">
+                
+                <Button x:Name="scissorsButton" Click="scissorsButton_Click">
+                    <Image Source="/Icons/scissors.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+                
+                <Button x:Name="copyButton" Click="copyButton_Click">
+                    <Image Source="/Icons/copy.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+                
+                <Button x:Name="pasteButton" Click="pasteButton_Click">
+                    <Image Source="/Icons/paste.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+            </ToolBar>
+
+            <ToolBar  Background="MintCream">
+
+                <ComboBox x:Name="fontSizeList"  Width="100" Margin="5" BorderBrush="Black" BorderThickness="1" SelectionChanged="fontSizeList_SelectionChanged"></ComboBox>
+                <ComboBox x:Name="fontStyleList" Width="150" Margin="5" BorderBrush="Black" BorderThickness="1" SelectionChanged="fontStyleList_SelectionChanged"></ComboBox>
+                
+                <Button x:Name="boldButton" Click="boldButton_Click">
+                    <Image Source="/Icons/b.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+                
+                <Button x:Name="italicButton" Click="italicButton_Click">
+                    <Image Source="/Icons/italic.png" Width="30" Height="25" Margin="5"></Image>
+                </Button>
+                
+                <Button x:Name="underlineButton" Click="underlineButton_Click">
+                    <Image Source="/Icons/underline.png" Width="30" Height="28" Margin="5"></Image>
+                </Button>
+                
+            </ToolBar >
+
+            <ToolBar  Background="MintCream">
+                
+                <Button x:Name="alignLeftButton" Click="alignLeftButton_Click">
+                    <Image Source="/Icons/align-left.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+
+                <Button x:Name="alignRightButton" Click="alignRightButton_Click">
+                    <Image Source="/Icons/align-right.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+                
+                <Button x:Name="alignCenterButton" Click="alignCenterButton_Click">
+                    <Image Source="/Icons/align-center.png" Width="30" Height="30" Margin="5"></Image>
+                </Button>
+
+                <Button x:Name="justifyButton" Click="justifyButton_Click">
+                    <Image Source="/Icons/align-justify.png" Width="30" Height="35" Margin="5"></Image>
+                </Button>
+
+                <ComboBox x:Name="colorsList" Width="110" Margin="5">
+                    <ListBox x:Name="fullColorsList" SelectionChanged="fullColorsList_SelectionChanged">
+                    </ListBox>
+                </ComboBox>
+                
+            </ToolBar>
+            
+        </ToolBarTray>
+
+        <RichTextBox  x:Name="textArea" Grid.Row="2" Background="WhiteSmoke"></RichTextBox>
+        
+        <Canvas Grid.Row="3" Background="CadetBlue">
+            <TextBlock Canvas.Left="10" Canvas.Top="5" x:Name="ColText" FontSize="15">Column:</TextBlock>
+            <TextBlock Canvas.Left="100" x:Name="RowText" Canvas.Top="5" FontSize="15">Row:</TextBlock>
+        </Canvas>
+
+    </Grid>
+</Window>
